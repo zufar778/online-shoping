@@ -10,7 +10,7 @@ router = Router()
 
 
 
-@router.message(CommandStart(),)
+@router.message(CommandStart())
 async def StartBot(message: Message, state: FSMContext):
     try:
         user_id=message.from_user.id
@@ -39,10 +39,9 @@ async def MaxsulotBots(call: CallbackQuery, state: FSMContext):
     xabar = call.data
     for text in Maxsulotlar():
         if text[1] == xabar:
-            await call.message.answer_photo(photo=f"{text[3]}", caption=f"Nomi: {text[1]}\nNarxi: {text[2]}\nXaqida: {text[4]}")
-            await call.message.answer('Sotib olishni xoxlaysizmi:', reply_markup=buying)
+            await call.message.answer_photo(photo=f"{text[3]}", caption=f"Nomi: {text[1]}\nNarxi: {text[2]}\nXaqida: {text[4]}", reply_markup=RaqamButtons())
             await state.update_data(name=f"{text[1]}", price=f"{text[2]}" )
-            await state.set_state(product.b)
+            await state.set_state(product.number)
             break
         elif xabar=='ortga':
             await state.set_state(product.pro)
@@ -51,16 +50,6 @@ async def MaxsulotBots(call: CallbackQuery, state: FSMContext):
     else:
         await call.answer("mavjud emas")
 
-
-@router.callback_query(F.data, product.b)
-async def olish(call: CallbackQuery, state: FSMContext):
-    xabar=call.data
-    if xabar=='ha':
-       await call.message.answer('Nechta sotib olmoqchisiz?', reply_markup=RaqamButtons())
-       await state.set_state(product.number)
-    elif xabar=='yoq':
-        await state.set_state(product.pro)
-        await call.message.answer_photo(photo="https://g2u-wp-prod.s3-ap-southeast-2.amazonaws.com/wp-content/uploads/2022/09/Online-shopping-hero.jpg", caption="Bizdagi maxsulotlar !!", reply_markup=MenyuButtons())
 
 
 @router.callback_query(product.number)

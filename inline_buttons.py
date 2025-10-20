@@ -35,3 +35,11 @@ def RaqamButtons():
     buttons.adjust(3)
     return buttons.as_markup()
 
+
+
+buyurtma = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [InlineKeyboardButton(text="zakaz", callback_data="zakaz")],
+        [InlineKeyboardButton(text="Tozalash", callback_data="tozalash"), InlineKeyboardButton(text=f"ortga", callback_data="ortga")]
+    ]
+)

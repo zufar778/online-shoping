@@ -5,3 +5,9 @@ class product(StatesGroup):
     pro=State()
     b=State()
     number=State()
+
+
+class Karzinka(StatesGroup):
+    contact = State()
+    manzil = State()
+    tasdiqlash = State()
