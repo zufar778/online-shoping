@@ -32,6 +32,22 @@ def karzin(user_id):
 
 
 
+def qosh(user_id, name,username):
+    try:
+        c = connect("maxsulot.db")
+        cursor = c.cursor()
+        cursor.execute("insert into users(user_id, name, username) values (?,?,?)", (user_id, name,username))
+        c.commit()
+        return 'done'
+    except (Exception, Error) as error:
+        print("Xato", error)
+    finally:
+        if c:
+            cursor.close()
+            c.close()
+
+
+
 
 
 

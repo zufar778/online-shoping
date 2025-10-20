@@ -2,7 +2,7 @@ from aiogram import  Router, F
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import CommandStart
 from inline_buttons import menyu, MenyuButtons, RaqamButtons, buying
-from db import Maxsulotlar, MaxsulotAdds
+from db import Maxsulotlar, MaxsulotAdds, qosh
 from states import product
 from aiogram.fsm.context import FSMContext
 
@@ -12,8 +12,15 @@ router = Router()
 
 @router.message(CommandStart(),)
 async def StartBot(message: Message, state: FSMContext):
-    await message.answer_photo(photo="https://www.arzaan.pk/cdn/shop/articles/3.jpg",caption=f"Assalomu alaykum Dokonimizga Xush kelibsiz\n\n{message.from_user.first_name}", reply_markup=menyu)
-    
+    try:
+        user_id=message.from_user.id
+        name=message.from_user.first_name
+        username=message.from_user.username
+        qosh(user_id, name, username)
+        await message.answer_photo(photo="https://www.arzaan.pk/cdn/shop/articles/3.jpg",caption=f"Assalomu alaykum Dokonimizga Xush kelibsiz\n\n{message.from_user.first_name}", reply_markup=menyu)
+
+    except:
+        await message.answer_photo(photo="https://www.arzaan.pk/cdn/shop/articles/3.jpg",caption=f"Welcome back Dokonimizga Xush kelibsiz\n\n{message.from_user.first_name}", reply_markup=menyu)
 
 
 
