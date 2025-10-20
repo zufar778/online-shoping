@@ -2,6 +2,13 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from db import Maxsulotlar
 
+
+
+buying=InlineKeyboardMarkup(
+    inline_keyboard=[
+        [InlineKeyboardButton(text='ha', callback_data='ha'), InlineKeyboardButton(text='yoq', callback_data='yoq')]
+    ]
+)
 menyu = InlineKeyboardMarkup(
     inline_keyboard=[
         [InlineKeyboardButton(text="Menyu 📝", callback_data="menyu")],
@@ -16,6 +23,8 @@ def MenyuButtons():
     buttons.add(InlineKeyboardButton(text="ortga ⬅️", callback_data="ortga"))
     buttons.adjust(2)
     return buttons.as_markup()
+
+
 
 
 def RaqamButtons():
