@@ -16,6 +16,75 @@ def Maxsulotlar():
             c.close()
 
 
+def karzin(user_id):
+    try:
+        c = connect("maxsulot.db")
+        cursor = c.cursor()
+        cursor.execute("select * from karzinka where user_id=?", (user_id,))
+        malumotlar = cursor.fetchall()
+        return malumotlar
+    except (Exception, Error) as error:
+        print("Xato", error)
+    finally:
+        if c:
+            cursor.close()
+            c.close()
+
+
+
+def qosh(user_id, name,username):
+    try:
+        c = connect("maxsulot.db")
+        cursor = c.cursor()
+        cursor.execute("insert into users(user_id, name, username) values (?,?,?)", (user_id, name,username))
+        c.commit()
+        return 'done'
+    except (Exception, Error) as error:
+        print("Xato", error)
+    finally:
+        if c:
+            cursor.close()
+            c.close()
+
+
+
+
+
+
+
+
+
+def MaxsulotAdds(user_id, name, price,count):
+    try:
+        c = connect("maxsulot.db")
+        cursor = c.cursor()
+        cursor.execute("""
+           insert into karzinka(user_id,name, price,count) values(?, ?, ?, ?)
+            """, (user_id,name, price, count))
+        c.commit()
+        return "bajarildi"
+    except (Exception, Error) as error:
+        print("Xato", error)
+    finally:
+        if c:
+            cursor.close()
+            c.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# print(Maxsulotlar())
 
 
 # def MaxsulotAdd(name, price, image, dec):
