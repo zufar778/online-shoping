@@ -11,3 +11,9 @@ class Karzinka(StatesGroup):
     contact = State()
     manzil = State()
     tasdiqlash = State()
+
+class admin_add(StatesGroup):
+    nomi=State()
+    narx=State()
+    rasm=State()
+    about=State()
