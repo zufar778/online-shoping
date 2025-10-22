@@ -5,12 +5,13 @@ from user import router
 from config import bot_token, admins
 from karzinka import k_router
 from admin import a_router
-
+from admin_add_product import adm_router
 
 dp = Dispatcher()
 bot = Bot(token=bot_token)
 logging.basicConfig(level=logging.INFO)
 
+dp.include_router(router=adm_router)
 dp.include_router(router=k_router)
 dp.include_router(router=a_router)
 dp.include_router(router=router)

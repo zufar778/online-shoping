@@ -87,21 +87,21 @@ def MaxsulotAdds(user_id, name, price,count):
 # print(Maxsulotlar())
 
 
-# def MaxsulotAdd(name, price, image, dec):
-#     try:
-#         c = connect("maxsulot.db")
-#         cursor = c.cursor()
-#         cursor.execute("""
-#            insert into maxsulot(name, price, image, dec) values(?, ?, ?, ?)
-#             """, (name, price, image, dec))
-#         c.commit()
-#         return "bajarildi"
-#     except (Exception, Error) as error:
-#         print("Xato", error)
-#     finally:
-#         if c:
-#             cursor.close()
-#             c.close()
+def MaxsulotAdd(name, price, image, dec):
+    try:
+        c = connect("maxsulot.db")
+        cursor = c.cursor()
+        cursor.execute("""
+           insert into maxsulot(name, price, image, dec) values(?, ?, ?, ?)
+            """, (name, price, image, dec))
+        c.commit()
+        return "bajarildi"
+    except (Exception, Error) as error:
+        print("Xato", error)
+    finally:
+        if c:
+            cursor.close()
+            c.close()
 
 
 # name = input("nomi: ")
