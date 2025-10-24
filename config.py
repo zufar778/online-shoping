@@ -1,2 +1,2 @@
-bot_token = "8326212432:AAHsT6sC2vDmVGWnNPVHQAEXOgcPWdAcQIg"
-admins = [5502720862]
+bot_token = "Telegram bot token"
+admins = ["admin_id"]
