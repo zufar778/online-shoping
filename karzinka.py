@@ -59,3 +59,4 @@ async def AdminBot(call: CallbackQuery, state: FSMContext):
             text += f"Nomi: {i[2]}\nnarxi: {i[3]/i[4]} so'm\nSoni {i[4]}\nsummasi {i[3]} so'm\n\n"
       await call.bot.send_location(chat_id =admins[0] ,latitude=la, longitude=lo)
       await call.bot.send_message(chat_id=admins[0], text=f"Telefon: {contact}\n{text}\n\nJami summa: {jami_summa}", reply_markup=buying)
+      await state.clear()

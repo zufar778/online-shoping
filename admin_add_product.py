@@ -53,3 +53,4 @@ async def nom(message: Message, state: FSMContext):
     print('fgh')
     MaxsulotAdd(name, price, image, dec)
     await message.answer('Qoshildi')
+    await state.clear()
