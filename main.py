@@ -20,16 +20,18 @@ async def main():
     dp.include_router(router)
 
     try:
-        for id in admins:
-            await bot.send_message(chat_id=id, text="bot ishga tushdi")
+        for admin_id in admins:
+            await bot.send_message(admin_id, "Bot ishga tushdi")
 
         await dp.start_polling(bot)
 
+    except (KeyboardInterrupt, SystemExit):
+        print("Bot to‘xtatildi")
+
     finally:
-        await bot.session.close()   # 🔥 MUHIM QATOR
+        print("Session yopilmoqda...")
+        await bot.session.close()
+        print("Session yopildi!")
 
 if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except (KeyboardInterrupt, SystemExit):
-        print("Bot to‘xtadi")
+    asyncio.run(main())
