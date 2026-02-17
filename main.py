@@ -7,26 +7,29 @@ from karzinka import k_router
 from admin import a_router
 from admin_add_product import adm_router
 
-dp = Dispatcher()
-bot = Bot(token=bot_token)
 logging.basicConfig(level=logging.INFO)
 
-dp.include_router(router=adm_router)
-dp.include_router(router=k_router)
-dp.include_router(router=a_router)
-dp.include_router(router=router)
-
-
+dp = Dispatcher()
 
 async def main():
-    for id in admins:
-        await bot.send_message(chat_id=id, text="bot ishga tushdi")
-    await dp.start_polling(bot)
+    bot = Bot(token=bot_token)
 
+    dp.include_router(adm_router)
+    dp.include_router(k_router)
+    dp.include_router(a_router)
+    dp.include_router(router)
 
+    try:
+        for id in admins:
+            await bot.send_message(chat_id=id, text="bot ishga tushdi")
+
+        await dp.start_polling(bot)
+
+    finally:
+        await bot.session.close()   # 🔥 MUHIM QATOR
 
 if __name__ == "__main__":
     try:
         asyncio.run(main())
-    except:
-        print("tugadi")
+    except (KeyboardInterrupt, SystemExit):
+        print("Bot to‘xtadi")
